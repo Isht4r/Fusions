@@ -16,4 +16,4 @@ Build a Fusion Reactor to get huge amounts of Energy
 
 ### Commands
 
-/fr guide - See the 3x3x3 Multiblock recipe for the Fusion Reactor
+- /fr guide - See the 3x3x3 Multiblock recipe for the Fusion Reactor
