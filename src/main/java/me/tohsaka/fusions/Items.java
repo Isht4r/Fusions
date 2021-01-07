@@ -5,6 +5,9 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.core.categories.FlexCategory;
 import io.github.thebusybiscuit.slimefun4.core.guide.SlimefunGuideLayout;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
+import me.mrCookieSlime.Slimefun.Objects.Category;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
+import me.mrCookieSlime.Slimefun.api.Slimefun;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
@@ -18,16 +21,9 @@ import java.util.List;
 
 public final class Items {
 
-    public static final FlexCategory FUSIONS = new FlexCategory(new NamespacedKey(Fusions.getInstance(), "FUSIONS_CATEGORY"), CATEGORY_ITEM_()) {
-        @Override
-        public boolean isVisible(Player player, PlayerProfile playerProfile, SlimefunGuideLayout slimefunGuideLayout) {
-            return true;
-        }
-
-        @Override
-        public void open(Player player, PlayerProfile playerProfile, SlimefunGuideLayout slimefunGuideLayout) {
-
-        }
+    public static final Category FUSIONS = new Category(new NamespacedKey(Fusions.getInstance(),
+            "FUSIONS_CATEGORY"),
+            CATEGORY_ITEM_()) {
     };
 
     public static final SlimefunItemStack FR_CORE = new SlimefunItemStack(
@@ -49,6 +45,8 @@ public final class Items {
             "&fRequires Cooling!",
             "&b> Must be waterlogged",
             "&b> Must be supplied with Reactor Coolant Cells",
+            "",
+            "&43x3x3 Multiblock recipe! See /fr guide",
             "",
             LoreBuilder.powerBuffer(524288),
             LoreBuilder.powerPerSecond(32696)
@@ -96,7 +94,15 @@ public final class Items {
             ""
     );
 
-    public static ItemStack CATEGORY_ITEM_() {
+    public static final SlimefunItemStack HINT = new SlimefunItemStack(
+            "FR_HINT_3X3X3",
+            Material.PAPER,
+            "&43x3x3 Multiblock recipe!",
+            "",
+            "&cSee /fr guid for the recipe!"
+            );
+
+    public static final ItemStack CATEGORY_ITEM_() {
         ItemStack CATEGORY_ITEM = new ItemStack(Material.ANCIENT_DEBRIS);
         ItemMeta meta = CATEGORY_ITEM.getItemMeta();
         meta.setLore(null);
@@ -109,4 +115,51 @@ public final class Items {
         CATEGORY_ITEM.setItemMeta(meta);
         return CATEGORY_ITEM;
     }
+
+    public static final ItemStack[] PAGE2 = new ItemStack[] {
+            Items.FR_CASING, Items.FR_GLASS, Items.FR_CASING,
+            Items.FR_GLASS, Items.FR_CORE, Items.FR_GLASS,
+            Items.FR_CASING, Items.FR_CASING, Items.FR_CASING
+    };
+
+    public static final ItemStack[] PAGE3 = new ItemStack[] {
+            Items.FR_CASING, Items.FR_GLASS, Items.FR_CASING,
+            Items.FR_CASING, Items.FR_GLASS, Items.FR_CASING,
+            Items.FR_CASING, Items.FR_CASING, Items.FR_CASING
+    };
+
+    public static final ItemStack[] PAGE1 = new ItemStack[] {
+            Items.FR_CASING, Items.FR_CASING, Items.FR_CASING,
+            Items.FR_GLASS, Items.FR_GLASS, Items.FR_GLASS,
+            Items.FR_CASING, Items.FR_IO, Items.FR_CASING
+    };
+
+
+    public static final SlimefunItemStack FR_GUIDE = new SlimefunItemStack(
+            "FR_GUIDE",
+            Material.WRITTEN_BOOK,
+            "",
+            "",
+            "&eRight Click &c&o&8\u21E8 &7See Fusion Reactor recipe"
+    );
+
+    public static final SlimefunItemStack P1 = new SlimefunItemStack(
+            "P1_",
+            Material.PAPER,
+            "&bFront Side"
+    );
+
+    public static final SlimefunItemStack P2 = new SlimefunItemStack(
+            "P2_",
+            Material.PAPER,
+            "&bMiddle Side"
+    );
+
+    public static final SlimefunItemStack P3 = new SlimefunItemStack(
+            "P3_",
+            Material.PAPER,
+            "&bBack Side"
+    );
+
+    private Items() {}
 }

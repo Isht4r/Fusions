@@ -6,11 +6,14 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
+import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
+import me.tohsaka.fusions.Fusions;
 import me.tohsaka.fusions.Items;
+import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Wither;
-import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.persistence.PersistentDataHolder;
 
 public class FR_IO extends SlimefunItem implements WitherProof {
     public FR_IO() {
@@ -31,15 +34,17 @@ public class FR_IO extends SlimefunItem implements WitherProof {
         boolean comp = true;
         if (comp) {
 
+            Block target = event.getClickedBlock().get();
+            String nbt = PersistentDataAPI.getString((PersistentDataHolder) target, new NamespacedKey(Fusions.getInstance(), "id"));
+            PersistentDataAPI.setString((PersistentDataHolder) target, new NamespacedKey(Fusions.getInstance(), "key"), "");
         }
         else {
-            event.getPlayer().sendMessage("These blocks are missing: ");
+            Block[] missing = {
+
+            };
+            event.getPlayer().sendMessage("These blocks are missing: " + missing.toString());
             event.cancel();
         }
-    }
-
-    private void OnExplosion(BlockExplodeEvent e) {
-        e.setCancelled(true);
     }
 
     @Override

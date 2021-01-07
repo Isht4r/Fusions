@@ -1,13 +1,17 @@
 package me.tohsaka.fusions;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
 public class Fusions extends JavaPlugin implements SlimefunAddon{
-
+    public static Inventory inv = Fusions.getInstance().getServer().createInventory(null,54, "&0Fusion Reactor Guide");
     private static Fusions instance;
 
     @Override
@@ -21,6 +25,12 @@ public class Fusions extends JavaPlugin implements SlimefunAddon{
         if (getConfig().getBoolean("options.auto-update")) {
 
         }
+
+        editInventory(inv);
+
+        ItemSetup.INSTANCE.init();
+
+        getServer().getPluginManager().registerEvents(new Events(), this);
     }
 
     @Override
@@ -44,5 +54,12 @@ public class Fusions extends JavaPlugin implements SlimefunAddon{
 
     public static FileConfiguration getCfg() {
         return instance.getConfig();
+    }
+
+    public static void editInventory(Inventory i) {
+        i.setItem(17, Items.P1);
+        i.setItem(14, Items.P2);
+        i.setItem(11, Items.P3);
+
     }
 }
