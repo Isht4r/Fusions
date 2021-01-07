@@ -1,4 +1,4 @@
-# Fusions Slimefun Addon
+## Fusions Slimefun Addon
 
 Build a Fusion Reactor to get huge amounts of Energy
 
