@@ -1,9 +1,9 @@
-## Fusions Slimefun Addon
+# Fusions Slimefun Addon
 
 Build a Fusion Reactor to get huge amounts of Energy
 
 
-# New Items
+### New Items
 
 - Enriched Blistering Ingot
 - Fusion Reactor Core
@@ -14,6 +14,6 @@ Build a Fusion Reactor to get huge amounts of Energy
 - Fusion Reactor Guide
 
 
-# Commands
+### Commands
 
 /fr guide - See the 3x3x3 Multiblock recipe for the Fusion Reactor
