@@ -60,6 +60,9 @@ public class Fusions extends JavaPlugin implements SlimefunAddon{
         i.setItem(17, Items.P1);
         i.setItem(14, Items.P2);
         i.setItem(11, Items.P3);
+        i.setContents(Items.PAGE1);
+        i.setContents(Items.PAGE2);
+        i.setContents(Items.PAGE3);
 
     }
 }

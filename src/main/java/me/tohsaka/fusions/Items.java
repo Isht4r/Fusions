@@ -143,6 +143,30 @@ public final class Items {
             "&eRight Click &c&o&8\u21E8 &7See Fusion Reactor recipe"
     );
 
+    public static final SlimefunItemStack FR_TRITIUM = new SlimefunItemStack(
+            "FR_TRITIUM",
+            Material.LIGHT_BLUE_DYE,
+            "&1Tritium",
+            "",
+            "&7Fuel for Fusion Reactor"
+    );
+
+    public static final SlimefunItemStack FR_DEUTERIUM = new SlimefunItemStack(
+            "FR_DEUTERIUM",
+            Material.LIGHT_BLUE_DYE,
+            "&9Deuterium",
+            "",
+            "&7Fuel for Fusion Reactor"
+    );
+
+    public static final SlimefunItemStack FR_HYDROGEN = new SlimefunItemStack(
+            "FR_HYDROGEN",
+            Material.LIGHT_BLUE_DYE,
+            "&bHydrogen",
+            "",
+            "&7Fuel for Fusion Reactor"
+    );
+
     public static final SlimefunItemStack P1 = new SlimefunItemStack(
             "P1_",
             Material.PAPER,
