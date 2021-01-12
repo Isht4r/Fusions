@@ -6,14 +6,27 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import me.tohsaka.fusions.Fusions;
 import me.tohsaka.fusions.Items;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.Wither;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataHolder;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
 
 public class FR_IO extends SlimefunItem implements WitherProof {
     public FR_IO() {
@@ -31,24 +44,75 @@ public class FR_IO extends SlimefunItem implements WitherProof {
     }
 
     private void onBlockRightClick(PlayerRightClickEvent event) {
-        boolean comp = true;
-        if (comp) {
+        Block clicked = event.getClickedBlock().get();
+        Block Core = locateCore(clicked);
 
-            Block target = event.getClickedBlock().get();
-            String nbt = PersistentDataAPI.getString((PersistentDataHolder) target, new NamespacedKey(Fusions.getInstance(), "id"));
-            PersistentDataAPI.setString((PersistentDataHolder) target, new NamespacedKey(Fusions.getInstance(), "key"), "");
-        }
-        else {
-            Block[] missing = {
+        if (Core == null)
+            return;
+        else if (Fusions.validFRs.contains(clicked.getLocation())) {
+            //openinv();
+        } else {
+            BlockFace direc = null;
+            if (Core.getLocation().getBlockX() - clicked.getLocation().getBlockX() == 0)
+                if (Core.getLocation().getBlockZ() > clicked.getLocation().getBlockZ())
+                    direc = BlockFace.SOUTH;
+                else
+                    direc = BlockFace.NORTH;
 
-            };
-            event.getPlayer().sendMessage("These blocks are missing: " + missing.toString());
-            event.cancel();
+            else if (Core.getLocation().getBlockX() - clicked.getLocation().getBlockX() == 0)
+                if (Core.getLocation().getBlockZ() > clicked.getLocation().getBlockZ())
+                    direc = BlockFace.EAST;
+                else
+                    direc = BlockFace.WEST;
+
+            if (BlockStorage.check(clicked.getRelative(direc, 1), "FR_CASING")) {
+                if (BlockStorage.check(clicked.getRelative(direc, 2), "FR_CASING")) {
+
+                    if (BlockStorage.check(clicked.getRelative(), "FR_CASING")) {
+                        if (BlockStorage.check(clicked.getRelative().getRelative(direc, 1), "FR_CASING")) {
+                            if (BlockStorage.check(clicked.getRelative().getRelative(direc, 2), "FR_CASING")) {
+
+                                if (BlockStorage.check(clicked.getRelative(), "FR_CASING")) {
+                                    if (BlockStorage.check(clicked.getRelative().getRelative(direc, 1), "FR_CASING")) {
+                                        if (BlockStorage.check(clicked.getRelative().getRelative(direc, 2), "FR_CASING")) {
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
     @Override
     public void onAttack(Block block, Wither wither) {
         return;
+    }
+
+    private Block locateCore(Block b) {
+        Block block = null;
+
+        if (b.getRelative(1, 1, 0).getType() == Material.CONDUIT) block = b.getRelative(1, 1, 0);
+        else if (b.getRelative(0, 1, 1).getType() == Material.CONDUIT) block = b.getRelative(0, 1, 1);
+        else if (b.getRelative(-1, 1, 0).getType() == Material.CONDUIT) block = b.getRelative(-1, 1, 0);
+        else if (b.getRelative(0, 1, -1).getType() == Material.CONDUIT) block = b.getRelative(0, 1, -1);
+
+        else if (b.getRelative(2, 1, 0).getType() == Material.CONDUIT) block = b.getRelative(2, 1, 0);
+        else if (b.getRelative(0, 1, 2).getType() == Material.CONDUIT) block = b.getRelative(0, 1, 2);
+        else if (b.getRelative(-2, 1, 0).getType() == Material.CONDUIT) block = b.getRelative(-2, 1, 0);
+        else if (b.getRelative(0, 1, -2).getType() == Material.CONDUIT) block = b.getRelative(0, 1, -2);
+
+        return block;
+    }
+
+    private void save(Location l) {
+        Fusions.validFRs.add(l);
+    }
+
+    private void fr_open(Player p) {
+        p.openInventory(Fusions.FR_inv);
     }
 }

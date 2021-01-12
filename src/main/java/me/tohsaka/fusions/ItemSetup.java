@@ -2,6 +2,7 @@ package me.tohsaka.fusions;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.tohsaka.fusions.implementation.items.*;
+import me.tohsaka.fusions.implementation.machines.FUSIONREACTOR;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

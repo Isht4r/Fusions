@@ -1,2 +1,17 @@
 options:
   auto-update: false
+
+fr:
+  energy:
+    max-storage: 67108864
+    out: 32696
+
+  fuel:
+    tritium:
+      last: 432000
+
+    deuterium:
+      last: 266000
+
+    hydrogen:
+      last: 166000
