@@ -10,6 +10,7 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.cscorelib2.data.PersistentDataAPI;
 import me.tohsaka.fusions.Fusions;
 import me.tohsaka.fusions.Items;
+import me.tohsaka.fusions.Utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -23,12 +24,15 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataHolder;
+import me.tohsaka.fusions.Utils.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
+import java.awt.image.LookupTable;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class FR_IO extends SlimefunItem implements WitherProof {
+    public static final BlockFace[] Directions = { BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST };
+
     public FR_IO() {
         super(Items.FUSIONS, Items.FR_IO, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.CARGO_MOTOR, SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.CARGO_MANAGER,
@@ -66,15 +70,25 @@ public class FR_IO extends SlimefunItem implements WitherProof {
                     direc = BlockFace.WEST;
 
             if (BlockStorage.check(clicked.getRelative(direc, 1), "FR_CASING")) {
+                Fusions.getMcServer().broadcastMessage("found Case");
                 if (BlockStorage.check(clicked.getRelative(direc, 2), "FR_CASING")) {
+                    Fusions.getMcServer().broadcastMessage("found Case");
 
-                    if (BlockStorage.check(clicked.getRelative(), "FR_CASING")) {
-                        if (BlockStorage.check(clicked.getRelative().getRelative(direc, 1), "FR_CASING")) {
-                            if (BlockStorage.check(clicked.getRelative().getRelative(direc, 2), "FR_CASING")) {
+                    BlockFace newdirec1 = Utils.getNextDirection(direc, 1);
+                    if (BlockStorage.check(clicked.getRelative(newdirec1, 1), "FR_CASING")) {
+                        Fusions.getMcServer().broadcastMessage("found Case");
+                        if (BlockStorage.check(clicked.getRelative(newdirec1, 1).getRelative(direc, 1), "FR_CASING")) {
+                            Fusions.getMcServer().broadcastMessage("found Case");
+                            if (BlockStorage.check(clicked.getRelative(newdirec1, 1).getRelative(direc, 2), "FR_CASING")) {
+                                Fusions.getMcServer().broadcastMessage("found Case");
 
-                                if (BlockStorage.check(clicked.getRelative(), "FR_CASING")) {
-                                    if (BlockStorage.check(clicked.getRelative().getRelative(direc, 1), "FR_CASING")) {
-                                        if (BlockStorage.check(clicked.getRelative().getRelative(direc, 2), "FR_CASING")) {
+                                BlockFace newdirec2 = Utils.getNextDirection(direc, 3);
+                                if (BlockStorage.check(clicked.getRelative(newdirec2, 1), "FR_CASING")) {
+                                    Fusions.getMcServer().broadcastMessage("found Case");
+                                    if (BlockStorage.check(clicked.getRelative(newdirec2, 1).getRelative(direc, 1), "FR_CASING")) {
+                                        Fusions.getMcServer().broadcastMessage("found Case");
+                                        if (BlockStorage.check(clicked.getRelative(newdirec2, 1).getRelative(direc, 2), "FR_CASING")) {
+                                            Fusions.getMcServer().broadcastMessage("found Case");
 
                                         }
                                     }

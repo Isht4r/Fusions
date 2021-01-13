@@ -4,6 +4,7 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Server;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.Inventory;
@@ -11,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -20,7 +22,7 @@ public class Fusions extends JavaPlugin implements SlimefunAddon{
     public static Inventory FR_inv = Fusions.getInstance().getServer().createInventory(null,27, "&0Fusion Reactor Guide");
 
     private static Fusions instance;
-    public static final Set<Location> validFRs = ConcurrentHashMap.newKeySet();
+    public static final Set<Location> validFRs = new HashSet<>();
 
     @Override
     public void onEnable() {
@@ -72,5 +74,9 @@ public class Fusions extends JavaPlugin implements SlimefunAddon{
         i.setContents(Items.PAGE2);
         i.setContents(Items.PAGE3);
 
+    }
+
+    public static Server getMcServer() {
+        return getInstance().getServer();
     }
 }
