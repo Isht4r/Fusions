@@ -1,10 +1,8 @@
 package me.tohsaka.fusions;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Server;
+import io.github.thebusybiscuit.slimefun4.core.researching.Research;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.Inventory;
@@ -78,5 +76,9 @@ public class Fusions extends JavaPlugin implements SlimefunAddon{
 
     public static Server getMcServer() {
         return getInstance().getServer();
+    }
+
+    private void setupResearches() {
+        new Research(new NamespacedKey(this, "fusionreactorresearch"), 8918729, "Fusion Reactor", 100);
     }
 }

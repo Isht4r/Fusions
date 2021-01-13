@@ -14,7 +14,7 @@ public class Utils {
         // If it's the final one go back to the start.
         if (idx == FACES.size() - 1) return FACES.get(0);
         // Get from the next index
-        return FACES.get(idx + 1);
+        return FACES.get(idx + 1 + amount);
     }
 
 
