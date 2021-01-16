@@ -29,10 +29,6 @@ public class FR_CORE extends SlimefunItem implements Radioactive, WitherProof {
         return Radioactivity.VERY_DEADLY;
     }
 
-    private void OnExplosion(BlockExplodeEvent e) {
-        e.setCancelled(true);
-    }
-
     @Override
     public void onAttack(Block block, Wither wither) {
         return;
