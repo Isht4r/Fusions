@@ -97,15 +97,12 @@ public class FR_IO extends SlimefunItem implements WitherProof {
                                                 if (BlockStorage.check(clicked.getRelative(0, 1, 0).getRelative(direc, 3), "FR_GLASS")) {
                                                     //Fusions.getMcServer().broadcastMessage("found Case");
                                                     Block b = clicked.getRelative(0, 1,0);
-                                                    BlockFace newdirec3 = Utils.getNextDirection(direc, 1);
                                                     if (BlockStorage.check(b.getRelative(newdirec1, 1), "FR_CASING")) {
                                                         //Fusions.getMcServer().broadcastMessage("found Case");
                                                         if (BlockStorage.check(b.getRelative(newdirec1, 1).getRelative(direc, 1), "FR_CASING")) {
                                                             //Fusions.getMcServer().broadcastMessage("found Case");
                                                             if (BlockStorage.check(b.getRelative(newdirec1, 1).getRelative(direc, 2), "FR_CASING")) {
                                                                 //Fusions.getMcServer().broadcastMessage("found Case");
-
-                                                                BlockFace newdirec4 = Utils.getNextDirection(direc, 3);
                                                                 if (BlockStorage.check(b.getRelative(newdirec2, 1), "FR_CASING")) {
                                                                     //Fusions.getMcServer().broadcastMessage("found Case");
                                                                     if (BlockStorage.check(b.getRelative(newdirec2, 1).getRelative(direc, 1), "FR_CASING")) {
@@ -119,22 +116,29 @@ public class FR_IO extends SlimefunItem implements WitherProof {
                                                                                 //Fusions.getMcServer().broadcastMessage("found Case");
                                                                                 if (BlockStorage.check(clicked.getRelative(0, 1, 0).getRelative(direc, 3), "FR_GLASS")) {
                                                                                     //Fusions.getMcServer().broadcastMessage("found Case");
-                                                                                    Block b1 = clicked.getRelative(0, 1,0);
-                                                                                    BlockFace newdirec5 = Utils.getNextDirection(direc, 1);
+                                                                                    Block b1 = clicked.getRelative(0, 1, 0);
                                                                                     if (BlockStorage.check(b1.getRelative(newdirec1, 1), "FR_CASING")) {
                                                                                         //Fusions.getMcServer().broadcastMessage("found Case");
                                                                                         if (BlockStorage.check(b1.getRelative(newdirec1, 1).getRelative(direc, 1), "FR_CASING")) {
                                                                                             //Fusions.getMcServer().broadcastMessage("found Case");
                                                                                             if (BlockStorage.check(b1.getRelative(newdirec1, 1).getRelative(direc, 2), "FR_CASING")) {
                                                                                                 //Fusions.getMcServer().broadcastMessage("found Case");
-
-                                                                                                BlockFace newdirec6 = Utils.getNextDirection(direc, 3);
                                                                                                 if (BlockStorage.check(b1.getRelative(newdirec2, 1), "FR_CASING")) {
                                                                                                     //Fusions.getMcServer().broadcastMessage("found Case");
                                                                                                     if (BlockStorage.check(b1.getRelative(newdirec2, 1).getRelative(direc, 1), "FR_CASING")) {
                                                                                                         //Fusions.getMcServer().broadcastMessage("found Case");
                                                                                                         if (BlockStorage.check(b1.getRelative(newdirec2, 1).getRelative(direc, 2), "FR_CASING")) {
-                                                                                                            //Fusions.getMcServer().broadcastMessage("found Case");
+
+                                                                                                            //add to verified fr list
+                                                                                                            Fusions.validFRs.add(clicked.getLocation());
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
@@ -153,7 +157,7 @@ public class FR_IO extends SlimefunItem implements WitherProof {
             }
         }
     }
-//Fusions.validFRs.add(clicked.getLocation());
+
     @Override
     public void onAttack(Block block, Wither wither) {
         return;
